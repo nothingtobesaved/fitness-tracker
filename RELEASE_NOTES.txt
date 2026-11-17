@@ -1,0 +1,21 @@
+HUNTER SQUAD — MAINTENANCE PASS
+
+Changes:
+- Exercise removal now reconciles matching completion records, exercise XP log entries,
+  mission bonuses, and completed-day streak data instead of leaving stale XP behind.
+- Exercise auto-advance no longer uses a delayed callback that could override a quick
+  manual navigation action.
+- Supabase REST calls now use the stored session, attempt a refresh after an expired
+  access token, and call the remote logout endpoint when signing out.
+- Squad profile loading now fetches squad membership IDs first and then queries the
+  matching profiles using a valid PostgREST filter.
+- Exercise and mission writes now use conflict-ignore behavior matching the documented
+  database uniqueness constraints and client write policies.
+- GitHub Pages workflow uses npm ci for lockfile-based dependency installation.
+
+Important:
+- The published application remains local-first. The Supabase module is a backend
+  scaffold and is not yet wired into the app's visible sign-in, squad sync, or XP flow.
+- A full production build could not be run in this environment because npm dependency
+  installation could not complete. TypeScript/TSX syntax parsing, local import resolution,
+  tsconfig parsing, and package-lock consistency checks passed.
